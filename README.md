@@ -1,8 +1,8 @@
 # Brute-Force Web Logins
 
-This is a resource repository for the youtube video by [Cyber Concoct](youtube.com/@cyberconcoct) where various methods of cracking web logins are explored.
+This is a resource repository for the youtube video by [Cyber Concoct](https://www.youtube.com/@cyberconcoct) where various methods of cracking web logins are explored.
 ####
-[YouTube Video Link](youtube.com/@cyberconcoct)
+[YouTube Video Link](https://www.youtube.com/@cyberconcoct)
 
 ## Setup
 This repository contains 6 files:
