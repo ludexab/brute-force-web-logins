@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script>
+        window.onload = function() {
+            // Check if user is authenticated
+            if (sessionStorage.getItem("authenticated") !== "true") {
+                window.location.href = "index.html"; // Redirect to login if not authenticated
+            }
+        };
+    </script>
+</head>
+<body style="padding-left:25em; padding-top:10em;">
+    <h2>Welcome to the Home Page</h2>
+    <p>You have successfully logged in.</p>
+    <a href="index.html" onclick="sessionStorage.removeItem('authenticated');">Logout</a>
+</body>
+</html>

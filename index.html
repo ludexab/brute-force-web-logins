@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+    function login(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        fetch("http://127.0.0.1:5000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        })
+        .then(response => {
+            console.log("Response Status:", response.status); // Debugging
+
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text || "Login failed"); });
+            }
+
+            return response.text(); // Read response body
+        })
+        .then(text => {
+            console.log("Server Response:", text); // Debugging
+
+            if (text.includes("Login successful")) {
+                sessionStorage.setItem("authenticated", "true"); // Store session flag
+                window.location.href = "home.html"; // Redirect on success
+            } else {
+                document.getElementById("error-msg").innerText = text || "Invalid username or password!";
+            }
+        })
+        .catch(error => {
+            console.error("Fetch Error:", error.message);
+            document.getElementById("error-msg").innerText = error.message || "An error occurred. Please try again.";
+        });
+    }
+</script>
+</head>
+<body style="padding-left:25em; padding-top:10em;">
+    <h2 style="color:blue; font-size:50px;">LOGIN PAGE</h2>
+    <form onsubmit="login(event);">
+        <label style="font-size:30px;">Username:</label>
+        <input type="text" id="username" required><br><br>
+
+        <label style="font-size:30px;">Password:</label>
+        <input type="password" id="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+    <p id="error-msg" style="color: red;"></p>
+</body>
+</html>
